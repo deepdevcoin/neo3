@@ -1,0 +1,20 @@
+REGION_MAP = {
+    "brave_tabs": (0, 32, 1830, 75),
+    "brave_webpage_navigation": (0, 75, 110, 120), #back, forward, refresh.
+    "brave_address_bar": (415, 80, 1470, 115),
+    "chatgpt_sidebar": (0, 120, 375, 1080),
+    "chatgpt_chat_area": (590, 955, 1700, 1035),
+    "claude_chat_area": (615, 920, 1705, 1065),
+    "claude_sidebar": (0, 120, 412, 1080),
+    "perplexity_sidebar": (0, 120, 390, 1080),
+    "perplexity_chat_area" : (475, 920, 1537, 1057),
+    "mail_sidebar": (0, 120, 367, 1080),
+    "mail_search_bar": (367, 130, 1400, 200),
+    "mail_compose_area": (1080, 387, 1818, 1080),
+    "youtube_search_bar": (495, 132, 1266, 188),
+    "whatsapp_search_bar": (120, 212, 340, 270),
+    "whatsapp_chat_area": (687, 990, 1905, 1063),
+    "system_window_controls": (1830, 32, 1920, 75),
+    "system_status_bar": (1890, 32, 1920, 70),
+    "vscode_sidebar": (0, 33, 490, 1080),
+}
