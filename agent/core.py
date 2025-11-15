@@ -6,6 +6,7 @@ import requests
 import time
 from typing import Dict, Any, Optional, List
 from agent.planning import DynamicPlanner, PlanStatus
+from config import MODEL_PROVIDER
 
 
 class Agent:
@@ -16,7 +17,7 @@ class Agent:
         tool_registry,
         system_prompt: str,
         api_key: Optional[str] = None,
-        provider: str = "groq",
+        provider: str = MODEL_PROVIDER,
         max_iterations: int = 20,
         planning_mode: bool = True,
         min_step_delay: float = 1.0,

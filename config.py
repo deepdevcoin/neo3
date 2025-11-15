@@ -34,7 +34,7 @@ TEMPLATE_MATCH_CACHE_TTL = 2.0  # Cache detection results
 # =====================================================
 # MODEL PROVIDER CONFIGURATION
 # =====================================================
-MODEL_PROVIDER = os.environ.get("MODEL_PROVIDER", "groq")
+MODEL_PROVIDER = os.environ.get("MODEL_PROVIDER", "ollama")
 
 # =====================================================
 # OLLAMA CONFIGURATION
