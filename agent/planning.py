@@ -185,33 +185,22 @@ Create a detailed step-by-step execution plan to achieve this goal.
 
 # PLANNING RULES
 
-1. **Always start with get_system_state** - Know the current context
-2. **Use retrieve_ui_reference before detection** - Get correct element names
-3. **Pass exact values between steps** - Don't modify coordinates or keys
-4. **Check results before proceeding** - Verify success
-5. **Keep plans simple** - Minimum steps necessary
+1.  **Direct Action:** If the user provides all necessary information for a tool, create a one-step plan.
+2.  **Multi-step:** If information is missing, create a multi-step plan to gather it before acting.
+3.  **Simplicity:** Always prefer the simplest, most direct plan.
 
 # COMMON PATTERNS
 
-**Open Application:**
-1. get_system_state() - Check current app
-2. keyboard_shortcut(action="browser/terminal/files") - Open app
-3. (Optional) get_system_state() - Verify it opened
+**Direct Action (all info provided):**
+-   User: "draw circle at 800 900" -> Plan: `draw_overlay(coords="800 900")`
+-   User: "find file 'test_vision_tools'" -> Plan: `find_file(filename="test_vision_tools")`
 
-**Click UI Element:**
-1. get_system_state() - Check active app
-2. retrieve_ui_reference(query="element name") - Find it
-3. detect_ui_elements(template=<result.best_key>) - Get coordinates
-4. mouse_click(x=<result.x>, y=<result.y>) - Click it
-
-**Type Text:**
-1. detect_ui_regions(region="input_field") - Find field
-2. mouse_click(x=<center_x>, y=<center_y>) - Focus it
-3. clear_and_type(text="your text") - Enter text
-
-**Highlight Element (draw_overlay):**
-⚠️ ONLY use draw_overlay when user explicitly asks to "highlight", "show", or "mark" something.
-Do NOT use draw_overlay for simple tasks like "open browser" or "click button".
+**Multi-step (info missing):**
+-   User: "click the button"
+    1.  `get_system_state()` - Check current app
+    2.  `retrieve_ui_reference(query="button")` - Find button
+    3.  `detect_ui_elements(template=<result.best_key>)` - Get coordinates
+    4.  `mouse_click(x=<result.x>, y=<result.y>)` - Click it
 
 # OUTPUT FORMAT
 
@@ -223,27 +212,19 @@ Return ONLY valid JSON (no markdown):
   "steps": [
     {{
       "step_number": 1,
-      "tool_name": "get_system_state",
-      "arguments": {{}},
-      "purpose": "Check current application state",
+      "tool_name": "tool_name",
+      "arguments": {{"arg": "value"}},
+      "purpose": "Do something",
       "dependencies": []
-    }},
-    {{
-      "step_number": 2,
-      "tool_name": "keyboard_shortcut",
-      "arguments": {{"action": "browser"}},
-      "purpose": "Open browser",
-      "dependencies": [1]
     }}
   ]
 }}
 ```
 
 **CRITICAL:**
-- Output ONLY JSON, no markdown fences
-- Each step needs clear purpose
-- Dependencies are step numbers that must complete first
-- Keep plans minimal and efficient
+-   Output ONLY JSON.
+-   `draw_overlay` should only be used when the user explicitly asks to "highlight", "show", or "mark".
+-   Keep plans minimal and efficient.
 
 Create the plan for: **{user_goal}**
 """
