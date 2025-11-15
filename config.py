@@ -40,7 +40,7 @@ MODEL_PROVIDER = os.environ.get("MODEL_PROVIDER", "ollama")
 # OLLAMA CONFIGURATION
 # =====================================================
 OLLAMA_CONFIG = {
-    "model": os.environ.get("OLLAMA_MODEL", "qwen2.5:7b-instruct"),
+    "model": os.environ.get("OLLAMA_MODEL", "qwen2.5:3b-instruct"),
     "api_url": os.environ.get("OLLAMA_API_URL", "http://localhost:11434/v1/chat/completions"),
     "api_key": None,
 }
